@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "680430795953",
+    "project_id": "getxauth-e3681",
+    "storage_bucket": "getxauth-e3681.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680430795953:android:80bfcb84f67ce857287690",
+        "android_client_info": {
+          "package_name": "com.example.test_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcWrbr5U63f7fL5hLVAraZtzieYut2WZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
