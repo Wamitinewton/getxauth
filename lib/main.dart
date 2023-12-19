@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/Authentication%20pages/auth_service.dart';
 import 'package:test_project/Authentication%20pages/log_in.dart';
-import 'package:test_project/pages/home_screen.dart';
+import 'package:test_project/Authentication%20pages/signup_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,13 +28,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GetMaterialApp(
      debugShowCheckedModeBanner: false,
-      // initialBinding: BindingsBuilder(() {
-      //   Get.put(AuthController());
-      // }),
+      initialBinding: BindingsBuilder(() {
+        Get.put(AuthController());
+      }),
 
-      // initialRoute: '/home',
-      // getPages: [GetPage(name: '/home', page: () => LogInScreen())],
-      home: LogInScreen(),
+      initialRoute: '/login',
+      getPages: [
+        GetPage(name: '/login', page: () => LogInScreen()),
+        GetPage(name: '/signup', page: () => SignUpScreen()),
+        // GetPage(name: '/verify', page: () => VerificationScreen()),
+        ],
+      // home: SignUpScreen(),
+      
     );
   }
 }
