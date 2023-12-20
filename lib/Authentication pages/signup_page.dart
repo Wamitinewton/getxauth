@@ -112,7 +112,33 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                SizedBox(height: 40,),
              
+             Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Text('Already have an account?...', style: TextStyle(
+                        fontSize: 18,
+                      ),),
+                    ),
+                      Padding(
+                       padding: const EdgeInsets.only(right: 45),
+                       child: ElevatedButton(
+                        
+                         onPressed: (){
+                          Get.toNamed('/login');
+                         },
+                         child: const Text('Sign in', style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 16,
+                                         ),),
+                       ),
+                     ),
+                  ],
+                )
               ],
             ),
           ),

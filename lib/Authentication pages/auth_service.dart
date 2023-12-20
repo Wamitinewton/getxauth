@@ -43,13 +43,13 @@ class AuthController extends GetxController {
       if (passwordController.text == confirmPasswordController.text) {
         try {
           Get.dialog(
-              Center(
+              const Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(200.0),
-                  child: Container(
+                  padding: EdgeInsets.all(200.0),
+                  child: SizedBox(
                       width: 40,
                       height: 40,
-                      child: const CircularProgressIndicator(
+                      child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                       )),
                 ),
@@ -82,13 +82,13 @@ class AuthController extends GetxController {
     if (emailError == null && passwordError == null) {
       try {
         Get.dialog(
-            Center(
+            const Center(
               child: Padding(
-                padding: const EdgeInsets.all(200.0),
-                child: Container(
+                padding: EdgeInsets.all(200.0),
+                child: SizedBox(
                     width: 40,
                     height: 40,
-                    child: const CircularProgressIndicator(
+                    child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                     )),
               ),
