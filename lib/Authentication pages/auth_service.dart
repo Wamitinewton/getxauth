@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/pages/home_screen.dart';
 
 class AuthController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
@@ -61,7 +60,7 @@ class AuthController extends GetxController {
           user.value = result.user;
           Get.back();
 
-          Get.offAll(HomeScreen());
+          Get.toNamed('/welcome');
         } catch (e) {
           Get.back();
           Get.snackbar(
@@ -99,7 +98,7 @@ class AuthController extends GetxController {
         user.value = result.user;
         Get.back();
 
-        Get.offAll(HomeScreen());
+        Get.toNamed('/welcome');
       } catch (e) {
         Get.back();
         Get.snackbar('Error', 'Invalid log in credentials. Please try again');

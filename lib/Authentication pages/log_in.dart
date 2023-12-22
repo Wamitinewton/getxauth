@@ -24,26 +24,28 @@ class LogInScreen extends StatelessWidget {
             key: _formKey,
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 60),
-                  child: Text(
-                    'Welcome back . We have missed you',
-                    style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
+
+                 Container(
+                  height: 350,
+                  width: double.maxFinite,
+                  decoration: const BoxDecoration(
+                   
+                    image: DecorationImage(image: AssetImage('assets/images/elearning-ecdl-akadimos.jpg'),fit: BoxFit.cover)
                   ),
+                ),
+                const SizedBox(height: 18,),
+                const Text(
+                  'Welcome back . We have missed you',
+                  style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                const Icon(
-                  Icons.lock,
-                  size: 150,
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
+               
+               
         
                 FormFieldType(
                   labelText: 'Email',

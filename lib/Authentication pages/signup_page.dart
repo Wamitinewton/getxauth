@@ -27,20 +27,23 @@ class SignUpScreen extends StatelessWidget {
             key: _formKey,
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 60),
-                  child: Text(
-                    "Are you new? Create an account with us",
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                Container(
+                  height: 350,
+                  width: double.maxFinite,
+                  decoration: const BoxDecoration(
+                   
+                    image: DecorationImage(image: AssetImage('assets/images/elearning-ecdl-akadimos.jpg'),fit: BoxFit.cover)
                   ),
                 ),
-                const Icon(
-                  Icons.school,
-                  size: 170,
+                SizedBox(height: 18,),
+                const Text(
+                  "Are you new? Create an account with us",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
                 ),
+                
                 const SizedBox(
                   height: 20,
                 ),
@@ -113,7 +116,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 40,),
+                const SizedBox(height: 20,),
              
              Row(
                   mainAxisAlignment: MainAxisAlignment.end,
