@@ -86,19 +86,20 @@ class HomeScreen extends StatelessWidget {
                         source: ImageSource.gallery);
                     if (PickedFile != null) {
                       File videoFile = File(PickedFile.path);
-                    
+
                       Course newCourse = Course(
                           id: '',
                           title: _titleController.text,
                           description: _descriptionController.text,
                           videoUrl: '',
                           uploaderId: '');
-                    _courseController.addCourse(newCourse, videoFile);
-                    
+                      _courseController.addCourse(newCourse, videoFile);
+
                       _titleController.clear();
                       _descriptionController.clear();
-                    
+
                       _courseController.loadCourses();
+                      Get.toNamed('/course/${newCourse.id}');
                     }
                   } catch (e) {
                     Get.snackbar('Error', 'Failed to add course');
@@ -117,21 +118,23 @@ class HomeScreen extends StatelessWidget {
                     return const Center(
                       child: Text('You have not added any course yet'),
                     );
-                    
                   } else {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _courseController.courses.length,
-                        itemBuilder: (context, index) {
-                          Course course =
-                              _courseController.courses[index];
-                          return ListTile(
-                            title: Text(course.title),
-                            subtitle: Text(course.description),
-                            onTap: () {},
-                          );
-                        });
+                    return Container(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: _courseController.courses.length,
+                          itemBuilder: (context, index) {
+                            Course course = _courseController.courses[index];
+                            return ListTile(
+                              title: Text(course.title),
+                              subtitle: Text(course.description),
+                              onTap: () {
+                                Get.toNamed('/course/${course.id}');
+                              },
+                            );
+                          }),
+                    );
                   }
                 }),
               ],
@@ -139,7 +142,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-          
     );
   }
 }

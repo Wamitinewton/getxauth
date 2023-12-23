@@ -1,12 +1,12 @@
 class TextFormFieldValidator {
   static String? validateEmail(String? value) {
-    if(value == null || value.isEmpty) {
+    if (value == null || value.isEmpty) {
       return 'Please enter your email';
     }
     return null;
   }
 
- static String? validatePassword(String? value) {
+  static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'please enter your password';
     }
@@ -17,9 +17,10 @@ class TextFormFieldValidator {
     if (value == null || value.isEmpty) {
       return 'please confirm your password';
     }
-    
+
     return null;
   }
+
   static String? validateUsername(String? value) {
     if (value == null || value.isEmpty) {
       return 'please enter your username';

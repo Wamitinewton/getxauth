@@ -20,10 +20,12 @@ class CourseController extends GetxController {
     if (query.isEmpty) {
       filteredCourses.assignAll(courses);
     } else {
-      final filteredList = courses.where((course) =>
-          course.title.toLowerCase().contains(query.toLowerCase()) ||
-          course.description.toLowerCase().contains(query.toLowerCase())).toList();
-          filteredCourses.assignAll(filteredList);
+      final filteredList = courses
+          .where((course) =>
+              course.title.toLowerCase().contains(query.toLowerCase()) ||
+              course.description.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      filteredCourses.assignAll(filteredList);
     }
   }
 

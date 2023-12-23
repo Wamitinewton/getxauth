@@ -20,7 +20,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.teal,
       body: SingleChildScrollView(
         child: Center(
           child: Form(
@@ -28,14 +28,20 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: 350,
+                  height: 380,
                   width: double.maxFinite,
                   decoration: const BoxDecoration(
-                   
-                    image: DecorationImage(image: AssetImage('assets/images/elearning-ecdl-akadimos.jpg'),fit: BoxFit.cover)
-                  ),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(25),
+                          bottomRight: Radius.circular(25)),
+                      image: DecorationImage(
+                          image: AssetImage(
+                              'assets/images/elearning-ecdl-akadimos.jpg'),
+                          fit: BoxFit.cover)),
                 ),
-                SizedBox(height: 18,),
+                const SizedBox(
+                  height: 18,
+                ),
                 const Text(
                   "Are you new? Create an account with us",
                   style: TextStyle(
@@ -43,7 +49,6 @@ class SignUpScreen extends StatelessWidget {
                       fontSize: 25,
                       fontWeight: FontWeight.bold),
                 ),
-                
                 const SizedBox(
                   height: 20,
                 ),
@@ -58,6 +63,10 @@ class SignUpScreen extends StatelessWidget {
                   validator: TextFormFieldValidator.validateUsername,
                   onChanged: (value) =>
                       _authController.usernameController.text = value,
+                  suffixIcon: Icons.clear,
+                  onSuffixIconTap: () {
+                    usernameController.clear();
+                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -70,6 +79,10 @@ class SignUpScreen extends StatelessWidget {
                   validator: TextFormFieldValidator.validateEmail,
                   onChanged: (value) =>
                       _authController.emailController.text = value,
+                  suffixIcon: Icons.clear,
+                  onSuffixIconTap: () {
+                    emailController.clear();
+                  },
                 ),
                 const SizedBox(
                   height: 15,
@@ -82,6 +95,8 @@ class SignUpScreen extends StatelessWidget {
                   validator: TextFormFieldValidator.validatePassword,
                   onChanged: (value) =>
                       _authController.passwordController.text = value,
+                  suffixIcon: Icons.remove_red_eye,
+                  onSuffixIconTap: () {},
                 ),
                 const SizedBox(
                   height: 15,
@@ -92,7 +107,10 @@ class SignUpScreen extends StatelessWidget {
                   controller: confirmPasswordController,
                   obscureText: true,
                   validator: TextFormFieldValidator.validateConfirmPassword,
-                  onChanged:(value) => _authController.confirmPasswordController.text = value,
+                  onChanged: (value) =>
+                      _authController.confirmPasswordController.text = value,
+                  suffixIcon: Icons.remove_red_eye,
+                  onSuffixIconTap: () {},
                 ),
                 const SizedBox(
                   height: 30,
@@ -105,7 +123,6 @@ class SignUpScreen extends StatelessWidget {
                           passwordController.text,
                           confirmPasswordController.text,
                           usernameController.text);
-                          
                     }
                   },
                   child: const Text(
@@ -115,32 +132,35 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                const SizedBox(height: 20,),
-             
-             Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: Text('Already have an account?...', style: TextStyle(
-                        fontSize: 18,
-                      ),),
-                    ),
-                      Padding(
-                       padding: const EdgeInsets.only(right: 45),
-                       child: ElevatedButton(
-                        
-                         onPressed: (){
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 36),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Already have an account?...',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(width: 20,),
+                      ElevatedButton(
+                        onPressed: () {
                           Get.toNamed('/login');
-                         },
-                         child: const Text('Sign in', style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 16,
-                                         ),),
-                       ),
-                     ),
-                  ],
+                        },
+                        child: const Text(
+                          'Sign in',
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

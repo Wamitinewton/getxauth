@@ -31,7 +31,7 @@ class FirebaseService {
     });
    } catch (e) {
      Get.snackbar('Error', 'Error trying to add course');
-     throw Exception("Unable to add a course");
+     throw Exception('Unable to add a course');
    }
   }
 
@@ -62,7 +62,7 @@ class FirebaseService {
         throw Exception("Unauthorized access to this video");
       }
 
-      File videoFile =File('/path/to/store/videos/${courseId}.mp4');
+      File videoFile =File('/path/to/store/videos/$courseId.mp4');
       await _storageReference.child('videos/$courseId.mp4').writeToFile(videoFile);
       return videoFile;
     } catch (e) {

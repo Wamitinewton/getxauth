@@ -124,6 +124,4 @@ class AuthController extends GetxController {
     await _auth.signOut();
     user.value = null;
   }
-
-  
 }

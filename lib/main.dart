@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/Authentication%20pages/auth_service.dart';
 import 'package:test_project/Authentication%20pages/signup_page.dart';
-import 'package:test_project/pages/home_screen.dart';
+import 'package:test_project/pages/teacherpages/course_detailteacher.dart';
+import 'package:test_project/pages/teacherpages/home_screen.dart';
 import 'package:test_project/pages/welcome_page.dart';
 import 'package:test_project/services/course_controller.dart';
 
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/login', page: () => LogInScreen()),
         GetPage(name: '/signup', page: () => SignUpScreen()),
         GetPage(name: '/homescreen', page: () => HomeScreen()),
+        GetPage(name: '/course/:id', page: () => TeacherCourseDetails())
         // GetPage(name: '/verify', page: () => VerificationScreen()),
         ],
       // home: WelcomePage(),
