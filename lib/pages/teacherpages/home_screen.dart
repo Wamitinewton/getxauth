@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:test_project/Authentication%20pages/auth_service.dart';
+import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
 import 'package:test_project/models/course_model.dart';
 
 import 'package:test_project/services/course_controller.dart';
@@ -30,6 +30,7 @@ class HomeScreen extends StatelessWidget {
                 _authController.logOut();
                 Get.offAllNamed('/login');
               },
+              
               icon: const Icon(Icons.exit_to_app))
         ],
       ),

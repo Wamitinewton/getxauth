@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test_project/Authentication%20pages/otpVerification/verification_screen.dart';
 
 class AuthController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
@@ -10,6 +11,9 @@ class AuthController extends GetxController {
       TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  RxBool isLoading = false.obs;
+  late String phoneNumber ;
 
   Rx<User?> user = Rx<User?>(null);
 
@@ -31,6 +35,43 @@ class AuthController extends GetxController {
       return 'please enter your password';
     }
     return null;
+  }
+ 
+  Future<void> signInWithPhoneNumber(String phoneNumber) async {
+    isLoading.value = true;
+    this.phoneNumber = phoneNumber;
+    await _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await _auth.signInWithCredential(credential);
+          isLoading.value = false;
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          Get.snackbar('Error', e.toString());
+          isLoading.value = false;
+        },
+        codeSent: ((String verificationId, int? resendToken) {
+          Get.to(() =>   OtpVerificationScreen(verificationId: ''));
+          isLoading.value = false;
+        }),
+        codeAutoRetrievalTimeout: (String verificationId) {
+          Get.snackbar('Time', 'Auto retrieval timeout');
+          isLoading.value = false;
+        });
+  }
+
+  Future<void> verifyOtp(
+      String verificationId, String otp, String phoneNumber) async {
+    isLoading.value = true;
+
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationId, smsCode: otp);
+      await _auth.signInWithCredential(credential);
+    } catch (e) {
+      Get.snackbar('Error', e.toString());
+      isLoading.value = false;
+    }
   }
 
   Future<void> signUp(String email, String password, String username,
@@ -107,19 +148,7 @@ class AuthController extends GetxController {
       Get.snackbar('Error', 'Invalid email or password');
     }
   }
-// Future <void> sendEmailVerification() async {
-//   try {
-//     User? currentUser = _auth.currentUser;
-//     await currentUser?.sendEmailVerification();
 
-//     Get.snackbar('Verification Email Sent', 'Check your Email to verify your account');
-//   } catch (e) {
-//     if (kDebugMode) {
-//       print('Error sending verification email : $e');
-//     }
-//     Get.snackbar('Error', 'Failed to send verification email.');
-//   }
-// }
   Future<void> logOut() async {
     await _auth.signOut();
     user.value = null;

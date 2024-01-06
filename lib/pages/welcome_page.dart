@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication%20pages/auth_service.dart';
+import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
 import 'package:test_project/services/expandable_controller.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -12,7 +12,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: Color.fromARGB(255, 109, 175, 230),
+     backgroundColor: Colors.white,
       body: Stack(children: [
         Container(
           height: 400,
@@ -32,8 +32,12 @@ class WelcomePage extends StatelessWidget {
             height: 400,
             width: 400,
             decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey,
+                width: 2.0,
+              ),
               borderRadius: BorderRadius.circular(40),
-              color: Colors.teal,
+              color: Colors.white,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -123,8 +127,8 @@ class WelcomePage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
-                height: 90,
+              const SizedBox(
+                height: 50,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 120, right: 120, bottom: 50),

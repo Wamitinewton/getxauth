@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication%20pages/auth_service.dart';
+import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
 import 'package:test_project/common/components/formfield_builder.dart';
 import 'package:test_project/common/components/text_form_field_validator.dart';
 
@@ -20,23 +20,24 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
+     
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
             children: [
               Container(
-                height: 380,
+                height: 300,
                 width: double.maxFinite,
                 decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(25),
-                          bottomRight: Radius.circular(25)),
-                      image: DecorationImage(
-                          image: AssetImage(
-                              'assets/images/elearning-ecdl-akadimos.jpg'),
-                          fit: BoxFit.cover)),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(25)),
+                    image: DecorationImage(
+                        image: AssetImage(
+                            'assets/images/elearning-ecdl-akadimos.jpg'),
+                        fit: BoxFit.cover)),
               ),
               const SizedBox(
                 height: 18,
@@ -100,6 +101,10 @@ class LogInScreen extends StatelessWidget {
                 height: 25,
               ),
               ElevatedButton(
+                style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
+              ),
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       _authController.signIn(
@@ -126,15 +131,22 @@ class LogInScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                       ),
-                    ), SizedBox(width: 10,),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     ElevatedButton(
+                      style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
+              ),
                       onPressed: () {
                         Get.toNamed('/signup');
                       },
                       child: const Text(
                         'Sign up',
                         style: TextStyle(
-                          color: Colors.green,
+                          
                           fontSize: 16,
                         ),
                       ),

@@ -12,4 +12,14 @@ class Course {
     required this.videoUrl,
     required this.uploaderId,
   });
+
+  toJson() {
+    return {
+      'id' : id,
+      'title': title,
+      'description' : description,
+      'videoUrl' : videoUrl,
+      'uploaderId' : uploaderId,
+    };
+  }
 }

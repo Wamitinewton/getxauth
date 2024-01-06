@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication pages/auth_service.dart';
+import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
+import 'package:test_project/common/components/divide_line.dart';
 import 'package:test_project/common/components/formfield_builder.dart';
 
-import '../common/components/text_form_field_validator.dart';
+import '../../common/components/text_form_field_validator.dart';
 
 class SignUpScreen extends StatelessWidget {
   final AuthController _authController = Get.find<AuthController>();
@@ -20,7 +21,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Center(
           child: Form(
@@ -28,7 +29,7 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: 380,
+                  height: 300,
                   width: double.maxFinite,
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -52,25 +53,7 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                FormFieldType(
-                  labelText: 'username',
-                  hintText: 'Enter your username',
-                  controller: usernameController,
-                  obscureText: false,
-                  validator: TextFormFieldValidator.validateUsername,
-                  onChanged: (value) =>
-                      _authController.usernameController.text = value,
-                  suffixIcon: Icons.clear,
-                  onSuffixIconTap: () {
-                    usernameController.clear();
-                  },
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
+                
                 FormFieldType(
                   labelText: 'Email',
                   hintText: 'Enter your email address',
@@ -116,6 +99,10 @@ class SignUpScreen extends StatelessWidget {
                   height: 30,
                 ),
                 ElevatedButton(
+                  style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
+              ),
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       _authController.signUp(
@@ -146,22 +133,64 @@ class SignUpScreen extends StatelessWidget {
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(width: 20,),
+                      const SizedBox(width: 20,),
                       ElevatedButton(
+                        style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
+              ),
                         onPressed: () {
                           Get.toNamed('/login');
                         },
                         child: const Text(
                           'Sign in',
                           style: TextStyle(
-                            color: Colors.green,
+                            
                             fontSize: 16,
                           ),
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
+
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Row(
+                    children: [
+                      DividerLine(),
+                      SizedBox(width: 5,),
+                      Text('Or continue with'),
+                      SizedBox(width: 5,),
+                      DividerLine(),
+                      
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 15,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 50, right: 50, bottom: 30),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
+              ),
+                    onPressed: () {
+                      Get.toNamed('/phone');
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.phone_enabled, color: Colors.blue,),
+                        SizedBox(width: 5,),
+                        Text('Phone Registration', style: TextStyle(
+                          
+                          fontSize: 16,
+                        ),)
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
