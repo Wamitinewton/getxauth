@@ -3,14 +3,17 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/models/course_model.dart';
+import 'package:test_project/models/course%20model/course_model.dart';
 
 class FirebaseService {
   final CollectionReference _coursesCollection =
       FirebaseFirestore.instance.collection('courses');
   final Reference _storageReference = FirebaseStorage.instance.ref();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
 
   Future<void> addCourse(Course course, File videoFile) async {
    try {
@@ -18,10 +21,32 @@ class FirebaseService {
      if (user == null) {
        throw Exception("User has not been authenticated");
      }
-      final videoRef = _storageReference.child('videos/${course.id}.mp4');
-    await videoRef.putFile(videoFile);
+     else if (_descriptionController.text.isEmpty && _titleController.text.isEmpty) {
+      Get.defaultDialog(
+      title: 'Alert!',
+      middleText: 'please fill up the provided fields!.',
+      backgroundColor: Colors.white,
+      titleStyle: const TextStyle(
+        color: Colors.red,
+        fontWeight: FontWeight.bold,
+      ),
+      middleTextStyle: const TextStyle(
+        color: Colors.black,
+      ),
+      confirm: ElevatedButton(
+        onPressed: () {
+          Get.toNamed('/homescreen'); 
+        },
+        child: const Text('OK'),
+      ),
+    );
+      
+     }else {
+       final videoRef = _storageReference.child('videos/${course.id}.mp4');
+     final TaskSnapshot uploadTask = await videoRef.putFile(videoFile);
+     
 
-    final String videoUrl = await videoRef.getDownloadURL();
+    final String videoUrl = await uploadTask.ref.getDownloadURL();
 
     await _coursesCollection.add({
       'title': course.title,
@@ -29,6 +54,7 @@ class FirebaseService {
       'videoUrl': videoUrl,
       'uploaderId': user.uid,
     });
+     }
    } catch (e) {
      Get.snackbar('Error', 'Error trying to add course');
      throw Exception('Unable to add a course');
@@ -62,7 +88,7 @@ class FirebaseService {
         throw Exception("Unauthorized access to this video");
       }
 
-      File videoFile =File('/path/to/store/videos/$courseId.mp4');
+      File videoFile =File('gs://getxauth-e3681.appspot.com $courseId.mp4');
       await _storageReference.child('videos/$courseId.mp4').writeToFile(videoFile);
       return videoFile;
     } catch (e) {

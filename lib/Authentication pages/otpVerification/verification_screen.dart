@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test_project/Authentication%20pages/authcontrollers/phone_service.dart';
 import 'package:test_project/common/components/otp_field.dart';
-
-import '../authcontrollers/auth_service.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
   final TextEditingController otpController = TextEditingController();
 
-  final String verificationId;
+  final PhoneAuthController controller = Get.find();
+
 
   OtpVerificationScreen({
     super.key,
-    required this.verificationId,
   });
 
   @override
@@ -32,7 +31,9 @@ class OtpVerificationScreen extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.black),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed('/login');
+                    },
                     child: const Icon(
                       Icons.arrow_back_ios,
                       color: Colors.white,
@@ -112,11 +113,7 @@ class OtpVerificationScreen extends StatelessWidget {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.purple)),
               onPressed: () {
-                String otp = otpController.text.trim();
-                String phoneNumber = Get.find<AuthController>().phoneNumber;
-
-                Get.find<AuthController>()
-                    .verifyOtp(verificationId, otp, phoneNumber);
+                // controller.verifyOTP(verificationId);
               },
               child: const Text(
                 "Verify",

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
+import 'package:test_project/Authentication%20pages/authcontrollers/phone_service.dart';
 import 'package:test_project/common/components/intl_phone.dart';
+import 'package:test_project/common/components/text_form_field_validator.dart';
 
 class PhoneNumberInput extends StatelessWidget {
   final Rx<PhoneNumber> phoneNumber = PhoneNumber().obs;
   final TextEditingController phoneNumberController = TextEditingController();
+  final PhoneAuthController controller = Get.put(PhoneAuthController());
+
   PhoneNumberInput({super.key});
 
   @override
@@ -45,7 +48,9 @@ class PhoneNumberInput extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            InternationalPhoneInput(),
+            InternationalPhoneInput(
+              validator: TextFormFieldValidator.validatePhoneNumber,
+            ),
             const SizedBox(
               height: 25,
             ),
@@ -56,9 +61,8 @@ class PhoneNumberInput extends StatelessWidget {
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.purple)),
                 onPressed: () {
-
-                  String phoneNumber = phoneNumberController.text.trim();
-                  Get.find<AuthController>().signInWithPhoneNumber(phoneNumber);
+                  // String phoneNumber = phoneNumberController.text.trim();
+                  controller.verifyPhoneNumber(phoneNumberController.text);
                   Get.toNamed('/otp');
                 },
                 child: const Text('Register now'))

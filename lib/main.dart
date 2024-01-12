@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/Authentication%20pages/otpVerification/phonenumber_input.dart';
 import 'package:test_project/Authentication%20pages/otpVerification/verification_screen.dart';
-import 'package:test_project/pages/startup_page.dart';
+import 'package:test_project/common/components/startup_page.dart';
+import 'package:test_project/pages/studentpages/views/student_screen.dart';
 import 'package:test_project/services/course_controller.dart';
 
 import 'Authentication pages/authcontrollers/auth_service.dart';
 import 'Authentication pages/authpages/log_in.dart';
 import 'Authentication pages/authpages/signup_page.dart';
-import 'pages/teacherpages/course_detailteacher.dart';
-import 'pages/teacherpages/home_screen.dart';
-import 'pages/welcome_page.dart';
+import 'pages/teacherpages/view/course_detailteacher.dart';
+import 'pages/teacherpages/view/home_screen.dart';
+import 'common/components/welcome_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +25,7 @@ void main() async {
       storageBucket: "getxauth-e3681.appspot.com",
     ),
   );
+ 
 
   Get.put(AuthController());
   Get.put(CourseController());
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
       }),
       initialRoute: '/startup',
       getPages: [
-        GetPage(name: '/otp', page: () =>   OtpVerificationScreen(verificationId: '')),
+        GetPage(name: '/otp', page: () =>   OtpVerificationScreen()),
         GetPage(name: '/phone', page: () => PhoneNumberInput()),
         GetPage(name: '/startup', page: () => const StartUPPage()),
         GetPage(name: '/welcome', page: () => WelcomePage()),
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/course/:id', page: () => const TeacherCourseDetails())
         // GetPage(name: '/verify', page: () => VerificationScreen()),
       ],
-      // home: SignUpScreen(),
+      // home: StudentHomeScreen(),
     );
   }
 }

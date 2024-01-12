@@ -59,7 +59,7 @@ class LogInScreen extends StatelessWidget {
                 controller: emailController,
                 obscureText: false,
                 validator: TextFormFieldValidator.validateEmail,
-                onChanged: null,
+                onChanged: emailController.obs.call,
                 suffixIcon: Icons.clear,
                 onSuffixIconTap: () {
                   emailController.clear();
@@ -75,7 +75,7 @@ class LogInScreen extends StatelessWidget {
                 controller: passwordController,
                 obscureText: showPassword.value,
                 validator: TextFormFieldValidator.validatePassword,
-                onChanged: null,
+                onChanged: passwordController.obs.call,
                 suffixIcon: Icons.remove_red_eye,
                 onSuffixIconTap: () {
                   showPassword.toggle();

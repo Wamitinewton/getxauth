@@ -27,4 +27,11 @@ class TextFormFieldValidator {
     }
     return null;
   }
+
+  static String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your correct phone number';
+    }
+    return null;
+  }
 }

@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:test_project/models/course_model.dart';
+import 'package:test_project/models/course%20model/course_model.dart';
 import 'package:test_project/services/firebase_learnservice.dart';
 
 class CourseController extends GetxController {
-  final FirebaseService _firebaseService = FirebaseService();
+  final FirebaseService _firebaseService = Get.put(FirebaseService());
   final RxList<Course> courses = <Course>[].obs;
   final RxBool isLoading = true.obs;
   final RxList<Course> filteredCourses = <Course>[].obs;
@@ -32,7 +32,7 @@ class CourseController extends GetxController {
   void loadCourses() async {
     try {
       isLoading.value = true;
-      final coursesData = await _firebaseService.getCourses();
+      final coursesData = _firebaseService.getCourses();
       courses.assignAll(coursesData as Iterable<Course>);
     } catch (e) {
       Get.snackbar('Error', 'Failed to load courses');
@@ -41,7 +41,7 @@ class CourseController extends GetxController {
     }
   }
 
-  void addCourse(Course course, File videoFile) async {
+   addCourse(Course course, File videoFile) async {
     try {
       isLoading.value = true;
       await _firebaseService.addCourse(course, videoFile);
