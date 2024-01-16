@@ -32,26 +32,27 @@ class SignUpScreen extends StatelessWidget {
                   height: 300,
                   width: double.maxFinite,
                   decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(25),
-                          bottomRight: Radius.circular(25)),
+                     
                       image: DecorationImage(
                           image: AssetImage(
                               'assets/images/elearning-ecdl-akadimos.jpg'),
                           fit: BoxFit.cover)),
                 ),
                 const SizedBox(
-                  height: 18,
+                  height: 15,
                 ),
-                const Text(
-                  "Are you new? Create an account with us",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+              const  Padding(
+                  padding:  EdgeInsets.only(left: 10, right: 10),
+                  child:  Text(
+                    "Are you new? Create an account with us",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 
                 FormFieldType(
@@ -68,7 +69,7 @@ class SignUpScreen extends StatelessWidget {
                   },
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 6,
                 ),
                 FormFieldType(
                   labelText: 'password',
@@ -82,7 +83,7 @@ class SignUpScreen extends StatelessWidget {
                   onSuffixIconTap: () {},
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 6,
                 ),
                 FormFieldType(
                   labelText: 'confirm password',
@@ -96,7 +97,7 @@ class SignUpScreen extends StatelessWidget {
                   onSuffixIconTap: () {},
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 18,
                 ),
                 ElevatedButton(
                   style: ButtonStyle(

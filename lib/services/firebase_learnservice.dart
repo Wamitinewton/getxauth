@@ -16,49 +16,47 @@ class FirebaseService {
   final TextEditingController _titleController = TextEditingController();
 
   Future<void> addCourse(Course course, File videoFile) async {
-   try {
-     User? user = _auth.currentUser;
-     if (user == null) {
-       throw Exception("User has not been authenticated");
-     }
-     else if (_descriptionController.text.isEmpty && _titleController.text.isEmpty) {
-      Get.defaultDialog(
-      title: 'Alert!',
-      middleText: 'please fill up the provided fields!.',
-      backgroundColor: Colors.white,
-      titleStyle: const TextStyle(
-        color: Colors.red,
-        fontWeight: FontWeight.bold,
-      ),
-      middleTextStyle: const TextStyle(
-        color: Colors.black,
-      ),
-      confirm: ElevatedButton(
-        onPressed: () {
-          Get.toNamed('/homescreen'); 
-        },
-        child: const Text('OK'),
-      ),
-    );
-      
-     }else {
-       final videoRef = _storageReference.child('videos/${course.id}.mp4');
-     final TaskSnapshot uploadTask = await videoRef.putFile(videoFile);
-     
+    try {
+      User? user = _auth.currentUser;
+      if (user == null) {
+        throw Exception("User has not been authenticated");
+      } else if (_descriptionController.text.isEmpty &&
+          _titleController.text.isEmpty) {
+        Get.defaultDialog(
+          title: 'Alert!',
+          middleText: 'please fill up the provided fields!.',
+          backgroundColor: Colors.white,
+          titleStyle: const TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+          middleTextStyle: const TextStyle(
+            color: Colors.black,
+          ),
+          confirm: ElevatedButton(
+            onPressed: () {
+              Get.toNamed('/homescreen');
+            },
+            child: const Text('OK'),
+          ),
+        );
+      } else {
+        final videoRef = _storageReference.child('videos/${course.id}.mp4');
+        final TaskSnapshot uploadTask = await videoRef.putFile(videoFile);
 
-    final String videoUrl = await uploadTask.ref.getDownloadURL();
+        final String videoUrl = await uploadTask.ref.getDownloadURL();
 
-    await _coursesCollection.add({
-      'title': course.title,
-      'description': course.description,
-      'videoUrl': videoUrl,
-      'uploaderId': user.uid,
-    });
-     }
-   } catch (e) {
-     Get.snackbar('Error', 'Error trying to add course');
-     throw Exception('Unable to add a course');
-   }
+        await _coursesCollection.add({
+          'title': course.title,
+          'description': course.description,
+          'videoUrl': videoUrl,
+          'uploaderId': user.uid,
+        });
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Error trying to add course');
+      throw Exception('Unable to add a course');
+    }
   }
 
   Stream<List<Course>> getCourses() {
@@ -75,7 +73,7 @@ class FirebaseService {
     });
   }
 
-  Future <File> getVideoFile (String courseId) async {
+  Future<File> getVideoFile(String courseId) async {
     try {
       User? user = _auth.currentUser;
       if (user == null) {
@@ -88,12 +86,13 @@ class FirebaseService {
         throw Exception("Unauthorized access to this video");
       }
 
-      File videoFile =File('gs://getxauth-e3681.appspot.com $courseId.mp4');
-      await _storageReference.child('videos/$courseId.mp4').writeToFile(videoFile);
+      File videoFile = File('gs://getxauth-e3681.appspot.com $courseId.mp4');
+      await _storageReference
+          .child('videos/$courseId.mp4')
+          .writeToFile(videoFile);
       return videoFile;
     } catch (e) {
       throw Exception("Error trying to retrieve video!");
     }
-    
   }
 }

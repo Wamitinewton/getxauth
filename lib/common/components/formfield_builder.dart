@@ -24,7 +24,7 @@ class FormFieldType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 40, right: 40),
+      padding: const EdgeInsets.only(left: 34, right: 34, top: 10, bottom: 10),
       child: TextFormField(
         obscureText: obscureText,
         validator: validator,

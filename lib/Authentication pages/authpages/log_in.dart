@@ -31,26 +31,24 @@ class LogInScreen extends StatelessWidget {
                 height: 300,
                 width: double.maxFinite,
                 decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25)),
+                   
                     image: DecorationImage(
                         image: AssetImage(
                             'assets/images/elearning-ecdl-akadimos.jpg'),
                         fit: BoxFit.cover)),
               ),
               const SizedBox(
-                height: 18,
+                height: 15,
               ),
               const Text(
                 'Welcome back . We have missed you',
                 style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey),
               ),
               const SizedBox(
-                height: 30,
+                height: 15,
               ),
 
               FormFieldType(
@@ -67,7 +65,7 @@ class LogInScreen extends StatelessWidget {
               ),
 
               const SizedBox(
-                height: 15,
+                height: 6,
               ),
               FormFieldType(
                 labelText: 'password',
@@ -82,7 +80,7 @@ class LogInScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(
-                height: 15,
+                height: 6,
               ),
               // FormFieldBuilder(labelText: 'password', hintText: 'Enter your password', controller: emailController, obscureText: true, validator: TextFormFieldValidator.validatePassword),
               const Padding(
@@ -98,7 +96,7 @@ class LogInScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 25,
+                height: 18,
               ),
               ElevatedButton(
                 style: ButtonStyle(
