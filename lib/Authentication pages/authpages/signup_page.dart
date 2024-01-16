@@ -4,6 +4,7 @@ import 'package:test_project/Authentication%20pages/authcontrollers/auth_service
 import 'package:test_project/common/components/divide_line.dart';
 import 'package:test_project/common/components/formfield_builder.dart';
 
+
 import '../../common/components/text_form_field_validator.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -22,20 +23,20 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Center(
-          child: Form(
-            key: _formKey,
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  height: 300,
+                  height: 270,
                   width: double.maxFinite,
                   decoration: const BoxDecoration(
                      
                       image: DecorationImage(
                           image: AssetImage(
-                              'assets/images/elearning-ecdl-akadimos.jpg'),
+                              'assets/images/university-avatar-education-icon-vector-2042838.jpg'),
                           fit: BoxFit.cover)),
                 ),
                 const SizedBox(
@@ -53,6 +54,23 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 const SizedBox(
                   height: 15,
+                ),
+                    
+               FormFieldType(
+                    
+                   labelText: 'Username',
+                   hintText: 'Please enter your username',
+                   controller: usernameController,
+                   obscureText: false,
+                   validator: TextFormFieldValidator.validateUsername,
+                   onChanged: (value) => _authController.setUsername(value),
+                   suffixIcon: Icons.clear,
+                   onSuffixIconTap: () {
+                     usernameController.clear();
+                   }),
+                    
+                const SizedBox(
+                  height: 6,
                 ),
                 
                 FormFieldType(
@@ -106,6 +124,7 @@ class SignUpScreen extends StatelessWidget {
               ),
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
+                     
                       _authController.signUp(
                           emailController.text,
                           passwordController.text,
@@ -154,7 +173,7 @@ class SignUpScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-
+                    
                 const Padding(
                   padding: EdgeInsets.only(bottom: 20),
                   child: Row(

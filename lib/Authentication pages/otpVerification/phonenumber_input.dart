@@ -20,11 +20,16 @@ class PhoneNumberInput extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.phone_android_outlined,
-              color: Colors.blue,
-              size: 200,
-            ),
+             Container(
+                  height: 270,
+                  width: double.maxFinite,
+                  decoration: const BoxDecoration(
+                     
+                      image: DecorationImage(
+                          image: AssetImage(
+                              'assets/images/icon-education-115075-transparent-png.png'),
+                          fit: BoxFit.cover)),
+                ),
             const SizedBox(
               height: 20,
             ),

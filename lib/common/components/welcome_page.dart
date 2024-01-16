@@ -130,7 +130,7 @@ class WelcomePage extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 120, right: 120, bottom: 50),
+                      const EdgeInsets.only(left: 90, right: 90, bottom: 40),
                   child: ElevatedButton(
                     onPressed: () {
                       _authController.logOut();
@@ -141,7 +141,7 @@ class WelcomePage extends StatelessWidget {
                       children: [
                         Icon(Icons.arrow_back),
                         SizedBox(
-                          width: 10,
+                          width: 7,
                         ),
                         Text('Log Out'),
                       ],

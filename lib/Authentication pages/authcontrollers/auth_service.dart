@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,14 +7,14 @@ class AuthController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  
+
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  RxString username = ''.obs;
 
   RxBool isLoading = false.obs;
-   
 
   Rx<User?> user = Rx<User?>(null);
 
@@ -36,12 +37,11 @@ class AuthController extends GetxController {
     }
     return null;
   }
-  
- 
 
-  
+  void setUsername(String value) {
+    username.value = value;
+  }
 
-  
   Future<void> signUp(String email, String password, String username,
       String confirmPassword) async {
     String? emailError = validateEmail(email);
@@ -52,15 +52,12 @@ class AuthController extends GetxController {
         try {
           Get.dialog(
               const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(200.0),
-                  child: SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                      )),
-                ),
+                child: SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                    )),
               ),
               barrierDismissible: false);
           UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -68,15 +65,28 @@ class AuthController extends GetxController {
 
           user.value = result.user;
           Get.back();
+         
+          Get.back();
 
           Get.toNamed('/welcome');
         } catch (e) {
-          Get.back();
-          Get.snackbar(
-              'Error', 'Invalid Email or password. Please check and try again');
+          Get.snackbar('Error', 'An unexpected error occurred');
         }
       } else {
-        Get.snackbar('Error', 'Passwords do not match.');
+        Get.dialog(
+          AlertDialog(
+            title: const Text('Alert'),
+            content: const Text('Your passwords do not match'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Get.back(); // Close the dialog
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
       }
     } else {
       Get.snackbar('Error', 'Invalid email or password');
@@ -91,15 +101,12 @@ class AuthController extends GetxController {
       try {
         Get.dialog(
             const Center(
-              child: Padding(
-                padding: EdgeInsets.all(200.0),
-                child: SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                    )),
-              ),
+              child: SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                  )),
             ),
             barrierDismissible: false);
         UserCredential result = await _auth.signInWithEmailAndPassword(
@@ -113,6 +120,7 @@ class AuthController extends GetxController {
         Get.snackbar('Error', 'Invalid log in credentials. Please try again');
       }
     } else {
+      Get.back();
       Get.snackbar('Error', 'Invalid email or password');
     }
   }

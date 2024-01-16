@@ -51,6 +51,8 @@ dependencies:
   flutter_firebase_recaptcha: ^1.0.2
   google_sign_in: ^6.2.1
   libphonenumber: ^2.0.2
+  flutter_native_splash: ^2.3.9
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -62,11 +64,16 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.1
-
+  
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+flutter_native_splash:
+  image: assets/images/icon-education-115075-transparent-png.png
+  color: "#f9f9f9"
+
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -78,6 +85,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -10,7 +10,7 @@ import 'package:test_project/models/course%20model/course_model.dart';
 class FirebaseService {
   final CollectionReference _coursesCollection =
       FirebaseFirestore.instance.collection('courses');
-  final Reference _storageReference = FirebaseStorage.instance.ref();
+  final Reference _storageReference = FirebaseStorage.instance.ref('getxauth-e3681.appspot.com');
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _titleController = TextEditingController();

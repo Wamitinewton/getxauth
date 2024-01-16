@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/Authentication%20pages/otpVerification/phonenumber_input.dart';
 import 'package:test_project/Authentication%20pages/otpVerification/verification_screen.dart';
-import 'package:test_project/common/components/circle_avatar.dart';
-import 'package:test_project/common/components/startup_page.dart';
-import 'package:test_project/pages/studentpages/views/student_screen.dart';
-import 'package:test_project/services/course_controller.dart';
+import 'package:test_project/bindings/controller_binding.dart';
 
-import 'Authentication pages/authcontrollers/auth_service.dart';
+import 'package:test_project/common/components/startup_page.dart';
+
+import 'package:test_project/pages/studentpages/views/student_screen.dart';
+
 import 'Authentication pages/authpages/log_in.dart';
 import 'Authentication pages/authpages/signup_page.dart';
 import 'pages/teacherpages/view/course_detailteacher.dart';
 import 'pages/teacherpages/view/home_screen.dart';
 import 'common/components/welcome_page.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
@@ -27,9 +27,6 @@ void main() async {
     ),
   );
 
-  Get.put(AuthController());
-  Get.put(CourseController());
-
   runApp(const MyApp());
 }
 
@@ -40,12 +37,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialBinding: BindingsBuilder(() {
-        Get.put(AuthController());
-      }),
+      initialBinding: ControllerBinding(),
       initialRoute: '/startup',
       getPages: [
-        GetPage(name: '/student', page: () => const StudentHomeScreen()),
+        GetPage(name: '/student', page: () => StudentHomeScreen()),
         GetPage(name: '/otp', page: () => OtpVerificationScreen()),
         GetPage(name: '/phone', page: () => PhoneNumberInput()),
         GetPage(name: '/startup', page: () => const StartUPPage()),
@@ -56,7 +51,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/course/:id', page: () => const TeacherCourseDetails())
         // GetPage(name: '/verify', page: () => VerificationScreen()),
       ],
-      // home: ProfileAvatar(),
+      home: StudentHomeScreen(),
     );
   }
 }
