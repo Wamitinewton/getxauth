@@ -11,6 +11,10 @@ import 'package:test_project/pages/studentpages/views/student_screen.dart';
 
 import 'Authentication pages/authpages/log_in.dart';
 import 'Authentication pages/authpages/signup_page.dart';
+import 'pages/studentpages/views/dashboard_page.dart';
+import 'pages/studentpages/views/mycourses_page.dart';
+import 'pages/studentpages/views/profile_page.dart';
+import 'pages/studentpages/views/settings_page.dart';
 import 'pages/teacherpages/view/course_detailteacher.dart';
 import 'pages/teacherpages/view/home_screen.dart';
 import 'common/components/welcome_page.dart';
@@ -41,6 +45,11 @@ class MyApp extends StatelessWidget {
       initialBinding: ControllerBinding(),
       initialRoute: '/startup',
       getPages: [
+          // Replace with your actual pages
+        GetPage(name: '/dashboard', page: () => const DashboardPage()),
+        GetPage(name: '/my_courses', page: () => const MyCourses()),
+        GetPage(name: '/profile', page: () => const ProfilePage()),
+        GetPage(name: '/settings', page: () => const SettingsPage()),
         GetPage(name: '/student', page: () => StudentHomeScreen()),
         GetPage(name: '/otp', page: () => OtpVerificationScreen()),
         GetPage(name: '/phone', page: () => PhoneNumberInput()),

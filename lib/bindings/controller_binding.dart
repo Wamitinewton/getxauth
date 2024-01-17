@@ -6,6 +6,7 @@ import 'package:test_project/services/course_controller.dart';
 import 'package:test_project/services/profile_service.dart';
 
 import '../pages/studentpages/controllers/avatar_controller.dart';
+import '../pages/studentpages/controllers/navbar_controller.dart';
 import '../pages/studentpages/repository/datalayer_repo.dart';
 
 class ControllerBinding extends Bindings {
@@ -20,5 +21,6 @@ class ControllerBinding extends Bindings {
     Get.put<UploadController>(UploadController());
     Get.put(
         AvatarController(ImagePickerRepositoryImpl(), ProfileStorageService()));
+    Get.put(NavBarController());
   }
 }
