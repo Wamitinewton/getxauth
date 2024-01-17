@@ -139,37 +139,32 @@ class AuthController extends GetxController {
       switch (error.code) {
         case 'network-request-failed':
           Get.snackbar('Error', 'Network error. Please check your connection.',
-              snackPosition: SnackPosition.TOP,
-              snackStyle: SnackStyle.FLOATING,
+              
               backgroundColor: Colors.blue,
               colorText: Colors.white);
           break;
         case 'user-not-found':
           Get.snackbar(
               'Error', 'User not found. Please check your credentials.',
-              snackPosition: SnackPosition.TOP,
-              snackStyle: SnackStyle.FLOATING,
+             
               backgroundColor: Colors.blue,
               colorText: Colors.white);
           break;
         case 'wrong-password':
           Get.snackbar('Error', 'Invalid password. Please try again.',
-              snackPosition: SnackPosition.TOP,
-              snackStyle: SnackStyle.FLOATING,
+             
               backgroundColor: Colors.blue,
               colorText: Colors.white);
           break;
         default:
           Get.snackbar('Error', 'An unexpected authentication error occurred',
-              snackPosition: SnackPosition.TOP,
-              snackStyle: SnackStyle.FLOATING,
+             
               backgroundColor: Colors.blue,
               colorText: Colors.white);
       }
     } else {
       Get.snackbar('Error', 'An unexpected error occurred',
-          snackPosition: SnackPosition.TOP,
-          snackStyle: SnackStyle.FLOATING,
+          
           backgroundColor: Colors.blue,
           colorText: Colors.white);
     }
