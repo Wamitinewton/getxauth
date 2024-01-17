@@ -1,14 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:test_project/pages/studentpages/controllers/avatar_controller.dart';
-import 'package:test_project/pages/studentpages/repository/datalayer_repo.dart';
+import 'package:test_project/common/components/circle_avatar.dart';
 
 // ignore: must_be_immutable
 class StudentHomeScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
-  final AvatarController _avatarController = Get.put(AvatarController(ImagePickerRepositoryImpl()));
 
   StudentHomeScreen({super.key});
 
@@ -35,21 +30,9 @@ class StudentHomeScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap: () async {
-                            await _avatarController.pickImage();
-                          },
-                          child: Obx(() => CircleAvatar(
-                                radius: 40,
-                                backgroundImage: _avatarController
-                                        .imagePath.value.isNotEmpty
-                                    ? FileImage(
-                                        File(_avatarController.imagePath.value))
-                                    : null,
-                              )),
-                        ),
+                        ProfileAvatar(),
                         const SizedBox(
-                          width: 8,
+                          width: 11,
                         ),
                         const Icon(
                           Icons.notifications_rounded,
@@ -78,7 +61,7 @@ class StudentHomeScreen extends StatelessWidget {
                         'assets/icons/person1.png',
                         fit: BoxFit.fill,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

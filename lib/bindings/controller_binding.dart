@@ -3,6 +3,7 @@ import 'package:test_project/Authentication%20pages/authcontrollers/auth_service
 import 'package:test_project/Authentication%20pages/authcontrollers/phone_service.dart';
 import 'package:test_project/pages/teacherpages/controllers/video_upload.dart';
 import 'package:test_project/services/course_controller.dart';
+import 'package:test_project/services/profile_service.dart';
 
 import '../pages/studentpages/controllers/avatar_controller.dart';
 import '../pages/studentpages/repository/datalayer_repo.dart';
@@ -17,6 +18,7 @@ class ControllerBinding extends Bindings {
     Get.put<PhoneAuthController>(PhoneAuthController());
 
     Get.put<UploadController>(UploadController());
-    Get.put(AvatarController(ImagePickerRepositoryImpl()));
+    Get.put(
+        AvatarController(ImagePickerRepositoryImpl(), ProfileStorageService()));
   }
 }

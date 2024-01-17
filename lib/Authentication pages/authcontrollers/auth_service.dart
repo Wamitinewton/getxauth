@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,84 +43,135 @@ class AuthController extends GetxController {
 
   Future<void> signUp(String email, String password, String username,
       String confirmPassword) async {
-    String? emailError = validateEmail(email);
-    String? passwordError = validatePassword(password);
+    try {
+      String? emailError = validateEmail(email);
+      String? passwordError = validatePassword(password);
 
-    if (emailError == null && passwordError == null) {
-      if (passwordController.text == confirmPasswordController.text) {
-        try {
+      if (emailError == null && passwordError == null) {
+        if (passwordController.text == confirmPasswordController.text) {
           Get.dialog(
               const Center(
                 child: SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                    )),
-              ),
-              barrierDismissible: false);
-          UserCredential result = await _auth.createUserWithEmailAndPassword(
-              email: email, password: password);
-
-          user.value = result.user;
-          Get.back();
-         
-          Get.back();
-
-          Get.toNamed('/welcome');
-        } catch (e) {
-          Get.snackbar('Error', 'An unexpected error occurred');
-        }
-      } else {
-        Get.dialog(
-          AlertDialog(
-            title: const Text('Alert'),
-            content: const Text('Your passwords do not match'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Get.back(); // Close the dialog
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
-    } else {
-      Get.snackbar('Error', 'Invalid email or password');
-    }
-  }
-
-  Future<void> signIn(String email, String password) async {
-    String? emailError = validateEmail(email);
-    String? passwordError = validatePassword(password);
-
-    if (emailError == null && passwordError == null) {
-      try {
-        Get.dialog(
-            const Center(
-              child: SizedBox(
                   width: 40,
                   height: 40,
                   child: CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                  )),
+                  ),
+                ),
+              ),
+              barrierDismissible: false);
+
+          UserCredential result = await _auth.createUserWithEmailAndPassword(
+              email: email, password: password);
+          user.value = result.user;
+          Get.back();
+
+          Get.toNamed('/welcome');
+        } else {
+          Get.back();
+          Get.dialog(AlertDialog(
+            title: const Text('Alert'),
+            content: const Text('Your passwors do not match'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: const Text('Ok'),
+              ),
+            ],
+          ));
+        }
+      } else {
+        Get.back();
+        Get.snackbar('Error', 'Invalid email or password',
+            snackPosition:
+                SnackPosition.TOP, 
+            snackStyle: SnackStyle.FLOATING,
+            backgroundColor: Colors.blue, 
+            colorText: Colors.white);
+      }
+    } catch (e) {
+      handleFirebaseAuthError(e);
+    }
+  }
+
+  Future<void> signIn(String email, String password) async {
+    try {
+      String? emailError = validateEmail(email);
+      String? passwordError = validatePassword(password);
+
+      if (emailError == null && passwordError == null) {
+        Get.dialog(
+            const Center(
+              child: SizedBox(
+                width: 40,
+                height: 40,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                ),
+              ),
             ),
             barrierDismissible: false);
+
         UserCredential result = await _auth.signInWithEmailAndPassword(
             email: email, password: password);
         user.value = result.user;
-        Get.back();
 
-        Get.toNamed('/welcome');
-      } catch (e) {
         Get.back();
-        Get.snackbar('Error', 'Invalid log in credentials. Please try again');
+        Get.toNamed('/welcome');
+      } else {
+        Get.back();
+        Get.snackbar('Error', 'Invalid email or password',
+            snackPosition: SnackPosition.TOP,
+            snackStyle: SnackStyle.FLOATING,
+            backgroundColor: Colors.blue,
+            colorText: Colors.white);
+      }
+    } catch (e) {
+      handleFirebaseAuthError(e);
+    }
+  }
+
+  void handleFirebaseAuthError(dynamic error) {
+    Get.until((route) => Get.isDialogOpen == false);
+    if (error is FirebaseAuthException) {
+      switch (error.code) {
+        case 'network-request-failed':
+          Get.snackbar('Error', 'Network error. Please check your connection.',
+              snackPosition: SnackPosition.TOP,
+              snackStyle: SnackStyle.FLOATING,
+              backgroundColor: Colors.blue,
+              colorText: Colors.white);
+          break;
+        case 'user-not-found':
+          Get.snackbar(
+              'Error', 'User not found. Please check your credentials.',
+              snackPosition: SnackPosition.TOP,
+              snackStyle: SnackStyle.FLOATING,
+              backgroundColor: Colors.blue,
+              colorText: Colors.white);
+          break;
+        case 'wrong-password':
+          Get.snackbar('Error', 'Invalid password. Please try again.',
+              snackPosition: SnackPosition.TOP,
+              snackStyle: SnackStyle.FLOATING,
+              backgroundColor: Colors.blue,
+              colorText: Colors.white);
+          break;
+        default:
+          Get.snackbar('Error', 'An unexpected authentication error occurred',
+              snackPosition: SnackPosition.TOP,
+              snackStyle: SnackStyle.FLOATING,
+              backgroundColor: Colors.blue,
+              colorText: Colors.white);
       }
     } else {
-      Get.back();
-      Get.snackbar('Error', 'Invalid email or password');
+      Get.snackbar('Error', 'An unexpected error occurred',
+          snackPosition: SnackPosition.TOP,
+          snackStyle: SnackStyle.FLOATING,
+          backgroundColor: Colors.blue,
+          colorText: Colors.white);
     }
   }
 
