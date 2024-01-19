@@ -5,7 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/models/course%20model/course_model.dart';
+import 'package:igniteiq/models/course%20model/course_model.dart';
+
 
 class FirebaseService {
   final CollectionReference _coursesCollection =

@@ -1,5 +1,6 @@
+import 'package:igniteiq/pages/studentpages/repository/image_repo.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:test_project/pages/studentpages/repository/image_repo.dart';
+
 
 class ImagePickerRepositoryImpl extends ImagePickerRepository {
   final ImagePicker _imagePicker = ImagePicker();

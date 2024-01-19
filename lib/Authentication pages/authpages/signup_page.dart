@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
-import 'package:test_project/common/components/divide_line.dart';
-import 'package:test_project/common/components/formfield_builder.dart';
+import 'package:igniteiq/common/components/divide_line.dart';
 
-
+import '../../common/components/formfield_builder.dart';
 import '../../common/components/text_form_field_validator.dart';
+import '../authcontrollers/auth_service.dart';
 
 class SignUpScreen extends StatelessWidget {
   final AuthController _authController = Get.find<AuthController>();
@@ -33,7 +32,6 @@ class SignUpScreen extends StatelessWidget {
                   height: 270,
                   width: double.maxFinite,
                   decoration: const BoxDecoration(
-                     
                       image: DecorationImage(
                           image: AssetImage(
                               'assets/images/university-avatar-education-icon-vector-2042838.jpg'),
@@ -42,9 +40,9 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-              const  Padding(
-                  padding:  EdgeInsets.only(left: 10, right: 10),
-                  child:  Text(
+                const Padding(
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  child: Text(
                     "Are you new? Create an account with us",
                     style: TextStyle(
                         color: Colors.grey,
@@ -55,24 +53,20 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                    
-               FormFieldType(
-                    
-                   labelText: 'Username',
-                   hintText: 'Please enter your username',
-                   controller: usernameController,
-                   obscureText: false,
-                   validator: TextFormFieldValidator.validateUsername,
-                   onChanged: (value) => _authController.setUsername(value),
-                   suffixIcon: Icons.clear,
-                   onSuffixIconTap: () {
-                     usernameController.clear();
-                   }),
-                    
+                FormFieldType(
+                    labelText: 'Username',
+                    hintText: 'Please enter your username',
+                    controller: usernameController,
+                    obscureText: false,
+                    validator: TextFormFieldValidator.validateUsername,
+                    onChanged: (value) => _authController.setUsername(value),
+                    suffixIcon: Icons.clear,
+                    onSuffixIconTap: () {
+                      usernameController.clear();
+                    }),
                 const SizedBox(
                   height: 6,
                 ),
-                
                 FormFieldType(
                   labelText: 'Email',
                   hintText: 'Enter your email address',
@@ -119,13 +113,13 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
-              ),
-                  onPressed: () {
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.purple)),
+                  onPressed: () async {
                     if (_formKey.currentState?.validate() ?? false) {
-                     
-                      _authController.signUp(
+                      await _authController.signUp(
                           emailController.text,
                           passwordController.text,
                           confirmPasswordController.text,
@@ -153,19 +147,21 @@ class SignUpScreen extends StatelessWidget {
                           fontSize: 18,
                         ),
                       ),
-                      const SizedBox(width: 20,),
+                      const SizedBox(
+                        width: 20,
+                      ),
                       ElevatedButton(
                         style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
-              ),
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.purple)),
                         onPressed: () {
                           Get.toNamed('/login');
                         },
                         child: const Text(
                           'Sign in',
                           style: TextStyle(
-                            
                             fontSize: 16,
                           ),
                         ),
@@ -173,40 +169,53 @@ class SignUpScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                    
                 const Padding(
                   padding: EdgeInsets.only(bottom: 20),
                   child: Row(
                     children: [
                       DividerLine(),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text('Or continue with'),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       DividerLine(),
-                      
                     ],
                   ),
                 ),
-                const SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 50, right: 50, bottom: 30),
+                  padding:
+                      const EdgeInsets.only(left: 50, right: 50, bottom: 30),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
-              ),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.purple)),
                     onPressed: () {
                       Get.toNamed('/phone');
                     },
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.phone_enabled, color: Colors.blue,),
-                        SizedBox(width: 5,),
-                        Text('Phone Registration', style: TextStyle(
-                          
-                          fontSize: 16,
-                        ),)
+                        Icon(
+                          Icons.phone_enabled,
+                          color: Colors.blue,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Phone Registration',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        )
                       ],
                     ),
                   ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/common/components/bottombar_util.dart';
-import 'package:test_project/common/components/circle_avatar.dart';
-import 'package:test_project/common/components/course_choice.dart';
-import 'package:test_project/common/components/featured_text.dart';
-import 'package:test_project/common/components/formfield_builder.dart';
-import 'package:test_project/common/components/pageview_builder.dart';
-
+import 'package:igniteiq/common/components/bottombar_util.dart';
+import 'package:igniteiq/common/components/circle_avatar.dart';
+import 'package:igniteiq/common/components/course_choice.dart';
+import 'package:igniteiq/common/components/featured_text.dart';
+import 'package:igniteiq/common/components/formfield_builder.dart';
+import 'package:igniteiq/common/components/pageview_builder.dart';
 // ignore: must_be_immutable
 class StudentHomeScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();

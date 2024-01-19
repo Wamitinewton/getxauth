@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication%20pages/authcontrollers/phone_service.dart';
-import 'package:test_project/common/components/otp_field.dart';
+import 'package:igniteiq/common/components/otp_field.dart';
+
+import '../authcontrollers/phone_service.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
   final TextEditingController otpController = TextEditingController();
 
   final PhoneAuthController controller = Get.find();
-
 
   OtpVerificationScreen({
     super.key,

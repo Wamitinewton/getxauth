@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:test_project/pages/studentpages/repository/image_repo.dart';
-import 'package:test_project/services/profile_service.dart';
+import 'package:igniteiq/pages/studentpages/repository/image_repo.dart';
+import 'package:igniteiq/services/profile_service.dart';
 
 class AvatarController extends GetxController {
   final ImagePickerRepository _imagePickerRepository;

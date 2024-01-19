@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
-import 'package:test_project/common/components/formfield_builder.dart';
-import 'package:test_project/common/components/text_form_field_validator.dart';
 
-
+import '../../common/components/formfield_builder.dart';
+import '../../common/components/text_form_field_validator.dart';
+import '../authcontrollers/auth_service.dart';
 
 // ignore: must_be_immutable
 class LogInScreen extends StatelessWidget {
@@ -23,7 +22,6 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
@@ -35,10 +33,8 @@ class LogInScreen extends StatelessWidget {
                   height: 270,
                   width: double.maxFinite,
                   decoration: const BoxDecoration(
-                     
                       image: DecorationImage(
-                          image: AssetImage(
-                              'assets/icons/person2.jpg'),
+                          image: AssetImage('assets/icons/person2.jpg'),
                           fit: BoxFit.cover)),
                 ),
                 const SizedBox(
@@ -54,7 +50,7 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-            
+
                 FormFieldType(
                   labelText: 'Email',
                   hintText: 'wamitinewton@example.com',
@@ -67,7 +63,7 @@ class LogInScreen extends StatelessWidget {
                     emailController.clear();
                   },
                 ),
-            
+
                 const SizedBox(
                   height: 6,
                 ),
@@ -103,13 +99,13 @@ class LogInScreen extends StatelessWidget {
                   height: 18,
                 ),
                 ElevatedButton(
-                  style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
-                ),
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.purple)),
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
-                       
                         _authController.signIn(
                             emailController.text, passwordController.text);
                       }
@@ -123,7 +119,7 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(
                   height: 25,
                 ),
-            
+
                 Padding(
                   padding: const EdgeInsets.only(bottom: 36),
                   child: Row(
@@ -140,16 +136,16 @@ class LogInScreen extends StatelessWidget {
                       ),
                       ElevatedButton(
                         style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color> (Colors.white),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.purple)
-                ),
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.purple)),
                         onPressed: () {
                           Get.toNamed('/signup');
                         },
                         child: const Text(
                           'Sign up',
                           style: TextStyle(
-                            
                             fontSize: 16,
                           ),
                         ),

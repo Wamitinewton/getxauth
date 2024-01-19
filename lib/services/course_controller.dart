@@ -1,9 +1,8 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:test_project/models/course%20model/course_model.dart';
-import 'package:test_project/services/firebase_learnservice.dart';
-
+import 'package:igniteiq/models/course%20model/course_model.dart';
+import 'package:igniteiq/services/firebase_learnservice.dart';
 class CourseController extends GetxController {
   final FirebaseService _firebaseService = Get.put(FirebaseService());
   final RxList<Course> courses = <Course>[].obs;

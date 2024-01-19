@@ -1,13 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication%20pages/otpVerification/phonenumber_input.dart';
-import 'package:test_project/Authentication%20pages/otpVerification/verification_screen.dart';
-import 'package:test_project/bindings/controller_binding.dart';
-
-import 'package:test_project/common/components/startup_page.dart';
-
-import 'package:test_project/pages/studentpages/views/student_screen.dart';
+import 'package:igniteiq/Authentication%20pages/otpVerification/phonenumber_input.dart';
+import 'package:igniteiq/Authentication%20pages/otpVerification/verification_screen.dart';
+import 'package:igniteiq/bindings/controller_binding.dart';
+import 'package:igniteiq/common/components/startup_page.dart';
+import 'package:igniteiq/pages/studentpages/views/student_screen.dart';
 
 import 'Authentication pages/authpages/log_in.dart';
 import 'Authentication pages/authpages/signup_page.dart';
@@ -18,6 +17,8 @@ import 'pages/studentpages/views/settings_page.dart';
 import 'pages/teacherpages/view/course_detailteacher.dart';
 import 'pages/teacherpages/view/home_screen.dart';
 import 'common/components/welcome_page.dart';
+const String defaultConfigFile = 'flutter_launcher_icons.yaml';
+const String flavorConfigFilePattern = r'^flutter_launcher_icons-(.*).yaml$';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +31,6 @@ Future<void> main() async {
       storageBucket: "getxauth-e3681.appspot.com",
     ),
   );
- 
 
   runApp(const MyApp());
 }
@@ -41,11 +41,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
       initialBinding: ControllerBinding(),
       initialRoute: '/startup',
       getPages: [
-          // Replace with your actual pages
+        // Replace with your actual pages
         GetPage(name: '/dashboard', page: () => const DashboardPage()),
         GetPage(name: '/my_courses', page: () => const MyCourses()),
         GetPage(name: '/profile', page: () => const ProfilePage()),
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/course/:id', page: () => const TeacherCourseDetails())
         // GetPage(name: '/verify', page: () => VerificationScreen()),
       ],
-      home: StudentHomeScreen(),
+      // home: StudentHomeScreen(),
     );
   }
 }

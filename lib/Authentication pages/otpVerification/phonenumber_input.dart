@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:test_project/Authentication%20pages/authcontrollers/phone_service.dart';
-import 'package:test_project/common/components/intl_phone.dart';
-import 'package:test_project/common/components/text_form_field_validator.dart';
+
+import '../../common/components/intl_phone.dart';
+import '../../common/components/text_form_field_validator.dart';
+import '../authcontrollers/phone_service.dart';
 
 class PhoneNumberInput extends StatelessWidget {
   final Rx<PhoneNumber> phoneNumber = PhoneNumber().obs;
@@ -22,16 +23,15 @@ class PhoneNumberInput extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 Container(
-                      height: 270,
-                      width: double.maxFinite,
-                      decoration: const BoxDecoration(
-                         
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/icon-education-115075-transparent-png.png'),
-                              fit: BoxFit.cover)),
-                    ),
+                Container(
+                  height: 270,
+                  width: double.maxFinite,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                              'assets/images/icon-education-115075-transparent-png.png'),
+                          fit: BoxFit.cover)),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -68,13 +68,14 @@ class PhoneNumberInput extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 7),
                       child: ElevatedButton(
                           style: ButtonStyle(
-                              foregroundColor:
-                                  MaterialStateProperty.all<Color>(Colors.white),
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(Colors.purple)),
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.purple)),
                           onPressed: () {
                             // String phoneNumber = phoneNumberController.text.trim();
-                            controller.verifyPhoneNumber(phoneNumberController.text);
+                            controller
+                                .verifyPhoneNumber(phoneNumberController.text);
                             Get.toNamed('/otp');
                           },
                           child: const Text('Register now')),

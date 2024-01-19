@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
-import 'package:test_project/services/expandable_controller.dart';
+import 'package:igniteiq/Authentication%20pages/authcontrollers/auth_service.dart';
+import 'package:igniteiq/services/expandable_controller.dart';
 
 class WelcomePage extends StatelessWidget {
   final AuthController _authController = Get.find<AuthController>();

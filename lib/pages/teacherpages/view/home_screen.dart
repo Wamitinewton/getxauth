@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/Authentication%20pages/authcontrollers/auth_service.dart';
-import 'package:test_project/pages/teacherpages/controllers/video_upload.dart';
+import 'package:igniteiq/Authentication%20pages/authcontrollers/auth_service.dart';
+
+import '../controllers/video_upload.dart';
 
 class HomeScreen extends StatelessWidget {
   final AuthController _authController = Get.find<AuthController>();
